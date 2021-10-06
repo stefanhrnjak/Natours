@@ -1,0 +1,56 @@
+.btn {
+    &:link,
+    &:visited { /*combined link (unvisited) and visted, link is for <a> tags*/
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block; /*treated as in-line text, so text-box text is set to center and centers it*/
+        border-radius: 10rem;
+        transition: all 0.2s; /*gives this propery to all pseudo classes of this class (btn:hover and btn:active)*/
+        position: relative; /*so that ::after effects are positioned from here*/
+        font-size: 1.6rem;
+    }
+
+    &:hover {
+        transform: translateY(-2px); /*y is +ive downwards, if you want to go up put -ive*/
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+        &:after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0; /*sets the last opacity to whatever value at the end of it's animation if there is one*/
+        }
+    }
+
+    &:active { /*active: when actived by user, for buttons when clicked*/
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &::after { /*creates a child of the element*/
+        content: ""; /*must be present for ::after*/
+        display: inline-block;
+        height: 100%; /*gives child 100% dimensions of parent*/
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; /*positions elements if they're on top of one another, -1 sets to be lower*/
+
+        transition: all .4s;
+    }
+
+    &--animated {
+        animation: moveInBottom 0.5s ease-in-out 0.75s; /*0.75s says how many seconds after loading to start animation*/
+        animation-fill-mode: backwards; /*applies styles of the animate at 0% before it starts animation*/
+    }
+}

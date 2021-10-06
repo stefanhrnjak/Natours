@@ -1,145 +1,166 @@
-/*
-COLORS:
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /*will inherit from parent, remember that *{} is weakest*/
+  /*we do this so plugins work better*/ }
 
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
+html {
+  /*roots can be altered here*/
+  font-size: 62.5%;
+  /*root font size "rem" has been altered*/ }
 
-*/
+/*do it by % of browser rem so users can change instead of using px*/
+body {
+  box-sizing: border-box; }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
 
 body {
-    font-family: "Lato", sans-serif;
-    font-weight: 400; /*font weight has to be imported from the google fonts*/
-    font-size: 16px;
-    line-height: 1.7; /*spacing between lines*/
-    color: #777;
-    padding: 30px;
-}
-
-.header {
-    height: 95vh; /*makes height of box to 95% of view height*/
-    background-image: linear-gradient( 
-        to right bottom, 
-        rgba(126, 213, 111, 0.8), 
-        rgba(40, 180, 131, 0.8)), 
-        url(../img/hero.jpg);
-    background-size: cover; /*fits element to width of box*/
-    background-position: top;
-    position: relative;
-
-    /*specify corners of image you want to keep starting from top left and go clockwise*/
-    /* https://bennettfeely.com/clippy/  easy tool for different shapes to clip*/ 
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
-
-.logo-box {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-}
-
-.logo {
-    height: 35px; /*width is automatically scaled down*/
-}
-
-.text-box {
-    position: absolute;
-    top: 40%; /*measured 40% down from parent element to top of child element*/
-    left: 50%; /*measured 50% left from parent element to left of child element*/
-    transform: translate(-50%, -50%); /*shift element itself 50% of its own size in x and y*/
-    text-align: center;
-}
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /*font weight has to be imported from the google fonts*/
+  font-size: 1.6rem;
+  line-height: 1.7;
+  /*spacing between lines*/
+  color: #777;
+  padding: 3rem;
+  /*this is now 30px (3 x 10px from root = 30px)*/ }
 
 .heading-primary {
-    color: white;
-    text-transform: uppercase;
-
-    backface-visibility: hidden; /*fix the small shake in animations, no good explaination why*/
-    margin-bottom: 60px; /*space between header words and button*/
-}
-
-.heading-primary-main {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /*fix the small shake in animations, no good explaination why*/
+  margin-bottom: 6rem;
+  /*space between header words and button*/ }
+  .heading-primary--main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
     animation-name: moveInLeft;
     animation-duration: 1s;
     animation-timing-function: ease-out;
     /*
     animation-delay: 3s;
     animation-iteration-count: 3;
-    */
-}
-
-.heading-primary-sub {
+    */ }
+  .heading-primary--sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out; }
 
-    animation: moveInRight 1s ease-out;
-}
-
-@keyframes moveInLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-100px);  
-    }
-
-    80% {
-        transform: translateX(10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes moveInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(100px);
-    }
-
-    80% {
-        transform: translateX(-10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.btn:link,
-.btn:visited{ /*combined link (unvisited) and visted, link is for <a> tags*/
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 15px 40px;
-        display: inline-block; /*treated as in-line text, so text-box text is set to center and centers it*/
-        border-radius: 100px;
-        transition: all 0.2s; /*gives this propery to all pseudo classes of this class (btn:hover and btn:active)*/
-}
+.btn:link, .btn:visited {
+  /*combined link (unvisited) and visted, link is for <a> tags*/
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  /*treated as in-line text, so text-box text is set to center and centers it*/
+  border-radius: 10rem;
+  transition: all 0.2s;
+  /*gives this propery to all pseudo classes of this class (btn:hover and btn:active)*/
+  position: relative;
+  /*so that ::after effects are positioned from here*/
+  font-size: 1.6rem; }
 
 .btn:hover {
-    transform: translateY(-2px); /*y is +ive downwards, if you want to go up put -ive*/
-    box-shadow: 0 10px 20px rgba(0,0,0, 0.2);
-}
+  transform: translateY(-2px);
+  /*y is +ive downwards, if you want to go up put -ive*/
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover:after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    /*sets the last opacity to whatever value at the end of it's animation if there is one*/ }
 
-.btn:active { /*active: when actived by user, for buttons when clicked*/
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0,0,0, 0.2);
-}
+.btn:active {
+  /*active: when actived by user, for buttons when clicked*/
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
 
-.btn-white {
-    background-color: white;
-    color: #777;
-}
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn::after {
+  /*creates a child of the element*/
+  content: "";
+  /*must be present for ::after*/
+  display: inline-block;
+  height: 100%;
+  /*gives child 100% dimensions of parent*/
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /*positions elements if they're on top of one another, -1 sets to be lower*/
+  transition: all .4s; }
+
+.btn--animated {
+  animation: moveInBottom 0.5s ease-in-out 0.75s;
+  /*0.75s says how many seconds after loading to start animation*/
+  animation-fill-mode: backwards;
+  /*applies styles of the animate at 0% before it starts animation*/ }
+
+.header {
+  height: 95vh;
+  /*makes height of box to 95% of view height*/
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  /*fits element to width of box*/
+  background-position: top;
+  position: relative;
+  /*specify corners of image you want to keep starting from top left and go clockwise*/
+  /* https://bennettfeely.com/clippy/  easy tool for different shapes to clip*/
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem;
+    /*width is automatically scaled down*/ }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    /*measured 40% down from parent element to top of child element*/
+    left: 50%;
+    /*measured 50% left from parent element to left of child element*/
+    transform: translate(-50%, -50%);
+    /*shift element itself 50% of its own size in x and y*/
+    text-align: center; }

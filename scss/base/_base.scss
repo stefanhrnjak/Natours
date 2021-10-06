@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit; /*will inherit from parent, remember that *{} is weakest*/
+    /*we do this so plugins work better*/
+}
+
+html { /*roots can be altered here*/
+    font-size: 62.5%; /*root font size "rem" has been altered*/
+}
+/*do it by % of browser rem so users can change instead of using px*/
+
+body {
+    box-sizing: border-box;
+}

@@ -6,6 +6,7 @@
     position: relative;
     /*specify corners of image you want to keep starting from top left and go clockwise*/
     /* https://bennettfeely.com/clippy/  easy tool for different shapes to clip*/
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); //so it's accissible on all browsers
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
     &__logo-box {

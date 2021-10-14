@@ -1,0 +1,7 @@
+@mixin clearfix {
+    &::after {
+        content: ""; //always necessary for pseudo elemets
+        display: table;
+        clear: both;
+    }
+}

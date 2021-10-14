@@ -1,0 +1,42 @@
+.row {
+    max-width: $grid-width; /*if 114rem are not available, it will fill 100% if the available space*/
+    margin: 0 auto; /*centers block inside of parent block*/
+
+    &:not(:last-child) { //selects everything EXCEPT the last child
+        margin-bottom: $gutter-vertical;
+    }
+
+    @include clearfix; //all child elements of row ignore the float after it has been affected
+
+    [class^="col-"] { //selects all attribute names that start with "col-"
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+        }
+    }
+
+    .col-1-of-2 {
+        width: calc((100% - #{$gutter-horizontal}) / 2); //(100% of width - spacing) / 2 = width of each box
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - #{$gutter-horizontal} * 2) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(2 * ((100% - #{$gutter-horizontal} * 2) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - #{$gutter-horizontal} * 3) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc(2 * ((100% - #{$gutter-horizontal} * 3) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        width: calc(3 * ((100% - #{$gutter-horizontal} * 3) / 4) + 2 * #{$gutter-horizontal});
+    }
+}

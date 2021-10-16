@@ -30,11 +30,19 @@
         float: left; //element must be floated
         -webkit-shape-outside: circle(50% at 50% 50%); //as of 2017 not supported by safari
         shape-outside: circle(50% at 50% 50%); //first value is radius, then location of radius with respect to element in x and y direction
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
         transform: translateX(-3rem) skewX(12deg);
         position: relative;
+        overflow: hidden;
+        border-radius: 50%;
         //backface-visibility: hidden;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            border-radius: none;
+        }
 
         @include respond(phone) {
             transform: translateX(-3rem) skewX(0);
@@ -51,7 +59,7 @@
     &__text {
         //backface-visibility: hidden;
         @include respond(phone) {
-            transform:skewX(0);
+            transform: skewX(0);
         }
     }
 
